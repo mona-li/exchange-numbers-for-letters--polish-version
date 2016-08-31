@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Zamiana</title>
+        <meta charset="windows-1250">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            p{
+                color: blueviolet;
+            }
+            form {
+                color:mediumorchid;
+            }
+            span{
+                color:lightseagreen;
+            }
+            #liczba{
+                width: 30px;
+            }
+            #zamien {
+                background-color:lightgreen;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <p>Aplikacja zamienia liczbę podaną za pomocą cyfr na liczbę zapisaną słownie.</p>
+        <form id="formularz" name="formularz">
+            Podaj liczbę &lt;0,100&gt; : <input type="text" id="liczba" name="liczba">
+            <input type="button" id="zamien" value="Zamień">
+            Słownie: <span id="slownie"></span>
+        </form>
+        
+        <script>
+            document.getElementById('zamien').addEventListener('click', function(){
+                var liczba = document.forms['formularz'].elements['liczba'].value;
+                document.getElementById('slownie').innerHTML= zamiana(liczba);
+            });
+            function zamiana(a){
+                var reszta;
+                if (isNaN(a)){
+                    return "Wprowadzona wartość nie jest liczbą. Podaj liczbę.";
+                }
+                else if (a<0 || a>100){
+                  return "Podaj liczbę z zakresu od 0 do 100.";
+                }
+                else if (a==0){
+                      return "zero";
+                      }
+                else if (a==100){
+                  return "sto";
+                }
+                else
+                    switch (a%10){
+                        case 0: reszta="";
+                        break;
+                            case 1: reszta="jeden";
+                            break;
+                            case 2: reszta="dwa";
+                            break;
+                            case 3: reszta="trzy";
+                            break;
+                            case 4: reszta="cztery";
+                            break;
+                            case 5: reszta="pięć";
+                            break;
+                            case 6: reszta="sześć";
+                            break;
+                            case 7: reszta="siedem";
+                            break;
+                            case 8: reszta="osiem";
+                            break;		
+                            case 9: reszta="dziewięć";
+                            break;	  
+                    };
+
+                {
+                    switch ((a-a%10)/10){
+                            case 0: return reszta;
+                            case 1: switch (a%10){
+                                case 0: return "dziesięć";
+                                case 1: return "jedenaście";
+                                case 2: return "dwanaście";
+                                case 3: return "trzynaście";
+                                case 4: return "czternaście";
+                                case 5: return "piętnaście";
+                                case 6: return "szesnaście";
+                                case 7: return "siedemnaście";
+                                case 8: return "osiemnaście";
+                                case 9: return "dziewiętnaście";
+                            } break;
+                            case 2: return "dwadzieścia"+" "+reszta;
+                            case 3: return "trzydzieści"+" "+reszta;
+                            case 4: return "czterdzieści"+" "+reszta;
+                                case 5: return "pięćdziesiąt"+" "+reszta;
+                                case 6: return "sześćdziesiąt"+" "+reszta;
+                                case 7: return "siedemdziesiąt"+" "+reszta;
+                                case 8: return "osiemdziesiąt"+" "+reszta;
+                                case 9: return "dziewięćdziesiąt"+" "+reszta;
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
